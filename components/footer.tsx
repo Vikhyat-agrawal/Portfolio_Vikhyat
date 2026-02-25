@@ -76,7 +76,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <h2 className="text-2xl font-bold mb-2">Vikhyat Agrawal</h2>
-            <p className="text-gray-400">Web Developer | Python Developer | AI Enthusiast</p>
+            <p className="text-gray-400">Web Developer & Prompt Engineer | AI Enthusiast</p>
           </motion.div>
 
           <motion.div

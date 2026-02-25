@@ -6,6 +6,7 @@ import { ExternalLink, Github, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useMobile } from "@/hooks/use-mobile"
+import { useTilt } from "@/hooks/use-tilt"
 
 interface Project {
   id: string
@@ -24,154 +25,160 @@ const projects: Project[] = [
   {
     id: "travelmate",
     title: "TravelMate",
-    description: "AI-powered travel companion app with blockchain integration for secure transactions.",
+    description: "Decentralized AI-powered travel platform with community features and blockchain payments.",
     longDescription:
-      "TravelMate is an innovative travel companion application that leverages AI to suggest personalized itineraries and local experiences. The app integrates blockchain technology for secure payment processing and verification of travel documents, ensuring a seamless and secure travel experience.",
+      "A decentralized AI-powered travel platform featuring community creation, blockchain-based payments, real-time chat, voting systems, fund pooling, and AI-driven trip planning.",
     image: "/placeholder.svg?height=300&width=500",
-    tags: ["React Native", "Python", "TensorFlow", "Blockchain", "Google Maps API"],
+    tags: ["React Native", "AI", "Blockchain", "Payments"],
     liveLink: "#",
     githubLink: "#",
     features: [
-      "AI-powered personalized travel recommendations",
-      "Blockchain-based secure payment system",
-      "Real-time language translation",
-      "Interactive maps with points of interest",
-      "Travel document verification and storage",
+      "Community creation & voting systems",
+      "Blockchain-based secure payments",
+      "Real-time chat & collaboration",
+      "AI-driven trip planning & recommendations",
+      "Fund pooling for group trips",
     ],
-    technologies: [
-      "React Native for cross-platform mobile development",
-      "Python backend with Flask",
-      "TensorFlow for recommendation engine",
-      "Ethereum smart contracts for payments",
-      "Google Maps API for location services",
-    ],
+    technologies: ["React Native", "Node.js", "Blockchain", "AI Models", "Web3"],
   },
   {
-    id: "resume-screener",
-    title: "Resume Screener",
-    description: "AI-powered tool that analyzes resumes and matches them to job descriptions using NLP.",
+    id: "micro-frontends",
+    title: "Micro-Frontends Course",
+    description: "Educational series on building scalable frontend architecture.",
     longDescription:
-      "This resume screening application uses natural language processing to analyze resumes and match them to job descriptions. It helps recruiters save time by automatically identifying the most qualified candidates based on skills, experience, and education.",
+      "A complete educational series teaching scalable frontend architecture using React, Webpack 5, and Module Federation. It covers best practices for large-scale application development.",
     image: "/placeholder.svg?height=300&width=500",
-    tags: ["Python", "NLP", "Machine Learning", "Flask", "React"],
+    tags: ["React", "Webpack 5", "Module Federation", "Architecture"],
     liveLink: "#",
     githubLink: "#",
     features: [
-      "Resume parsing and information extraction",
-      "Job description analysis",
-      "Candidate-job matching algorithm",
-      "Skill gap identification",
-      "Automated candidate ranking",
+      "Scalable architecture design",
+      "Module Federation implementation",
+      "Cross-application state management",
+      "Shared dependencies & optimization",
+      "Deployment strategies",
     ],
-    technologies: [
-      "Python with spaCy for NLP",
-      "scikit-learn for machine learning models",
-      "Flask for backend API",
-      "React for frontend interface",
-      "MongoDB for data storage",
-    ],
+    technologies: ["React", "Webpack 5", "JavaScript", "CI/CD"],
   },
   {
-    id: "tree-plantation",
-    title: "Tree Plantation Website",
-    description: "A web platform to promote and track tree plantation initiatives with interactive maps.",
+    id: "ai-resume-analyzer",
+    title: "AI Resume Analyzer",
+    description: "Intelligent system for analyzing resumes and providing personalized feedback.",
     longDescription:
-      "This web platform promotes environmental conservation by tracking tree plantation initiatives. It features interactive maps showing plantation sites, user contributions, and environmental impact metrics. Users can sponsor trees, organize plantation events, and track the growth of their planted trees.",
+      "An intelligent system that scans resumes, analyzes skills and experience, and provides ratings with personalized improvement feedback to help job seekers optimize their profiles.",
     image: "/placeholder.svg?height=300&width=500",
-    tags: ["React", "Node.js", "MongoDB", "Leaflet", "Express"],
+    tags: ["AI", "NLP", "Python", "Machine Learning"],
     liveLink: "#",
     githubLink: "#",
     features: [
-      "Interactive map of plantation sites",
-      "User contribution tracking",
-      "Environmental impact calculator",
-      "Event organization tools",
-      "Tree growth monitoring",
+      "Automated resume parsing",
+      "Skill & experience analysis",
+      "Personalized improvement feedback",
+      "Match rating against job descriptions",
+      "Detailed scoring metric",
     ],
-    technologies: [
-      "React for frontend",
-      "Node.js and Express for backend",
-      "MongoDB for database",
-      "Leaflet for interactive maps",
-      "Chart.js for data visualization",
-    ],
+    technologies: ["Python", "NLP Libraries", "React", "FastAPI"],
   },
   {
-    id: "temple-run",
-    title: "Temple Run-style Rights Game",
-    description: "A 3D endless runner game built with modern web technologies and 3D rendering.",
+    id: "telegram-job-bot",
+    title: "Telegram Job Bot",
+    description: "Automated bot for fetching and posting entry-level technical job opportunities.",
     longDescription:
-      "This Temple Run-inspired game educates players about human rights while providing entertaining gameplay. Players navigate obstacles while collecting rights-themed power-ups and answering questions about human rights to earn bonus points.",
+      "A Python-based bot that automatically fetches and posts filtered entry-level technical job opportunities from multiple APIs directly to Telegram channels.",
     image: "/placeholder.svg?height=300&width=500",
-    tags: ["Three.js", "JavaScript", "HTML5 Canvas", "WebGL", "Blender"],
+    tags: ["Python", "Telegram API", "Automation", "Bot"],
     liveLink: "#",
     githubLink: "#",
     features: [
-      "Endless runner gameplay mechanics",
-      "Educational content about human rights",
-      "Progressive difficulty levels",
-      "Character customization",
-      "High score leaderboard",
+      "Automated job fetching from APIs",
+      "Filtering for entry-level roles",
+      "Auto-posting to Telegram channels",
+      "Customizable search criteria",
+      "Real-time updates",
     ],
-    technologies: [
-      "Three.js for 3D rendering",
-      "JavaScript for game logic",
-      "HTML5 Canvas for UI elements",
-      "WebGL for graphics processing",
-      "Blender for 3D modeling",
-    ],
-  },
-  {
-    id: "tic-tac-toe",
-    title: "Tic-Tac-Toe (React)",
-    description: "A modern implementation of the classic game with AI opponent and multiplayer options.",
-    longDescription:
-      "This React-based Tic-Tac-Toe game features both single-player mode with an AI opponent and multiplayer functionality. The AI uses the minimax algorithm to provide a challenging experience, while the multiplayer mode allows real-time gameplay between friends.",
-    image: "/placeholder.svg?height=300&width=500",
-    tags: ["React", "JavaScript", "CSS3", "Socket.io", "AI Algorithm"],
-    liveLink: "#",
-    githubLink: "#",
-    features: [
-      "Single-player mode with AI opponent",
-      "Real-time multiplayer functionality",
-      "Game history tracking",
-      "Customizable difficulty levels",
-      "Responsive design for all devices",
-    ],
-    technologies: [
-      "React for UI components",
-      "JavaScript for game logic",
-      "CSS3 for styling",
-      "Socket.io for real-time communication",
-      "Minimax algorithm for AI opponent",
-    ],
-  },
-  {
-    id: "hotel-management",
-    title: "Hotel Management System",
-    description: "Comprehensive solution for hotel operations including booking and room management.",
-    longDescription:
-      "This hotel management system provides a comprehensive solution for hotel operations, including room booking, guest management, staff scheduling, and financial reporting. It streamlines hotel processes and improves operational efficiency.",
-    image: "/placeholder.svg?height=300&width=500",
-    tags: ["React", "Express", "MySQL", "Redux", "Node.js"],
-    liveLink: "#",
-    githubLink: "#",
-    features: [
-      "Room booking and availability management",
-      "Guest check-in/check-out processing",
-      "Staff scheduling and management",
-      "Financial reporting and analytics",
-      "Inventory and maintenance tracking",
-    ],
-    technologies: [
-      "React for frontend interface",
-      "Express for API development",
-      "MySQL for database management",
-      "Redux for state management",
-      "Node.js for server-side logic",
-    ],
+    technologies: ["Python", "Telegram Bot API", "Requests", "Scheduler"],
   },
 ]
+
+const ProjectCard = ({
+  project,
+  index,
+  isInView,
+  onClick,
+}: {
+  project: Project
+  index: number
+  isInView: boolean
+  onClick: () => void
+}) => {
+  const { tiltRef, tiltValues } = useTilt({ max: 5, scale: 1.02 })
+  const isMobile = useMobile()
+
+  return (
+    <motion.div
+      ref={tiltRef}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="project-card relative group"
+      onClick={onClick}
+      style={{
+        transform: !isMobile
+          ? `perspective(1000px) rotateX(${tiltValues.tiltY}deg) rotateY(${-tiltValues.tiltX}deg) scale3d(1, 1, 1)`
+          : undefined,
+        transition: "transform 0.1s ease",
+      }}
+    >
+      <div
+        className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
+        style={{
+          background: `radial-gradient(600px circle at ${tiltValues.percentX * 100}% ${tiltValues.percentY * 100
+            }%, rgba(0, 224, 255, 0.15), transparent 40%)`,
+        }}
+      />
+      <div className="relative z-10 bg-[#121a2e] h-full rounded-lg border border-[#1e293b] overflow-hidden group-hover:border-[#00e0ff]/50 transition-colors duration-300">
+        <div className="relative h-48 w-full overflow-hidden">
+          <Image
+            src={project.image || "/placeholder.svg"}
+            alt={`${project.title} - Project Screenshot`}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading={index < 3 ? "eager" : "lazy"}
+            quality={75}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121a2e] to-transparent opacity-70"></div>
+        </div>
+        <div className="p-6">
+          <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
+          <p className="text-gray-400 mb-4 h-12 overflow-hidden">{project.description}</p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.tags.slice(0, 3).map((tag) => (
+              <span key={tag} className="text-xs bg-[#1e293b] text-[#00e0ff] px-3 py-1 rounded-full border border-[#00e0ff]/20">
+                {tag}
+              </span>
+            ))}
+            {project.tags.length > 3 && (
+              <span className="text-xs bg-[#1e293b] text-gray-400 px-3 py-1 rounded-full border border-gray-700">
+                +{project.tags.length - 3}
+              </span>
+            )}
+          </div>
+
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full border-[#00e0ff] text-[#00e0ff] hover:bg-[#00e0ff] hover:text-black transition-all duration-300"
+            aria-label={`View details for ${project.title} project`}
+          >
+            View Details
+          </Button>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
 
 export default function Projects() {
   const ref = useRef<HTMLDivElement>(null)
@@ -193,53 +200,13 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <motion.div
+            <ProjectCard
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="project-card"
+              project={project}
+              index={index}
+              isInView={isInView}
               onClick={() => setSelectedProject(project)}
-            >
-              <div className="relative h-48 w-full overflow-hidden rounded-t-lg">
-                <Image
-                  src={project.image || "/placeholder.svg"}
-                  alt={`${project.title} - Project Screenshot`}
-                  fill
-                  className="object-cover transition-transform duration-500 hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  loading={index < 3 ? "eager" : "lazy"}
-                  quality={75}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f1a] to-transparent opacity-70"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-white">{project.title}</h3>
-                <p className="text-gray-400 mb-4 h-12 overflow-hidden">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <span key={tag} className="text-xs bg-[#1e293b] text-[#00e0ff] px-3 py-1 rounded-full">
-                      {tag}
-                    </span>
-                  ))}
-                  {project.tags.length > 3 && (
-                    <span className="text-xs bg-[#1e293b] text-gray-400 px-3 py-1 rounded-full">
-                      +{project.tags.length - 3}
-                    </span>
-                  )}
-                </div>
-
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full border-[#00e0ff] text-[#00e0ff] hover:bg-[#00e0ff]/10 btn-glow"
-                  aria-label={`View details for ${project.title} project`}
-                >
-                  View Details
-                </Button>
-              </div>
-            </motion.div>
+            />
           ))}
         </div>
 

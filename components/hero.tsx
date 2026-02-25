@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useTilt } from "@/hooks/use-tilt"
 import { useMobile } from "@/hooks/use-mobile"
+import Magnetic from "@/components/ui/magnetic"
 
 export default function Hero() {
   const controls = useAnimation()
@@ -14,7 +15,8 @@ export default function Hero() {
   const isMobile = useMobile()
   const { tiltRef, tiltValues } = useTilt({ max: isMobile ? 5 : 10 })
   const [typedText, setTypedText] = useState("")
-  const fullText = "Web Developer | AI Explorer | Problem Solver"
+  const fullText = "Web Developer | Prompt Engineer"
+
   const typingSpeed = 100
 
   useEffect(() => {
@@ -66,14 +68,25 @@ export default function Hero() {
             Vikhyat Agrawal
           </motion.h1>
 
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.5 }}
+            className="text-2xl md:text-3xl font-bold mb-6 text-white"
+          >
+            Web Developer & Prompt Engineer
+          </motion.h2>
+
           {/* Fixed height container for typewriter text */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="h-12 mb-6" // Increased height from h-8 to h-12
+            className="h-8 mb-6"
           >
-            <h2 className="text-xl md:text-2xl text-[#38bdf8] whitespace-normal md:whitespace-nowrap">{typedText}</h2>
+            <h2 className="text-xl md:text-2xl text-[#38bdf8] whitespace-normal md:whitespace-nowrap">
+              Building modern, scalable, and AI-powered web experiences
+            </h2>
           </motion.div>
 
           <motion.p
@@ -82,8 +95,7 @@ export default function Hero() {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="text-lg mb-8 text-gray-300 max-w-xl"
           >
-            Passionate about creating innovative digital solutions that merge cutting-edge web technologies with AI.
-            Based in Jaipur, India.
+            I’m a passionate web developer focused on creating high-performance, responsive, and user-centric web applications. I love transforming ideas into digital products that are both visually appealing and functionally powerful.
           </motion.p>
 
           <motion.div
@@ -93,16 +105,20 @@ export default function Hero() {
             className="flex flex-wrap gap-4 mb-8"
           >
             <a href="/resume.pdf" download aria-label="Download Resume" className="inline-block">
-              <Button className="bg-[#00e0ff] hover:bg-[#00e0ff]/80 text-black font-medium btn-glow">
-                <Download className="mr-2 h-4 w-4" />
-                Download Resume
-              </Button>
+              <Magnetic>
+                <Button className="bg-[#00e0ff] hover:bg-[#00e0ff]/80 text-black font-medium btn-glow">
+                  <Download className="mr-2 h-4 w-4" />
+                  Download Resume
+                </Button>
+              </Magnetic>
             </a>
             <a href="#projects" aria-label="View Projects" className="inline-block">
-              <Button variant="outline" className="border-[#00e0ff] text-[#00e0ff] hover:bg-[#00e0ff]/10 btn-glow">
-                View Projects
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <Magnetic>
+                <Button variant="outline" className="border-[#00e0ff] text-[#00e0ff] hover:bg-[#00e0ff]/10 btn-glow">
+                  View Projects
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Magnetic>
             </a>
           </motion.div>
 
@@ -112,43 +128,53 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.5 }}
             className="flex gap-6"
           >
-            <a href="tel:+916398644252" aria-label="Phone" className="text-white hover:text-[#00e0ff] glow-on-hover">
-              <Phone size={24} />
-            </a>
-            <a
-              href="mailto:vikhyatagrawal1410@gmail.com"
-              aria-label="Email"
-              className="text-white hover:text-[#00e0ff] glow-on-hover"
-            >
-              <Mail size={24} />
-            </a>
-            <a
-              href="https://github.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="text-white hover:text-[#00e0ff] glow-on-hover"
-            >
-              <Github size={24} />
-            </a>
-            <a
-              href="https://linkedin.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="text-white hover:text-[#00e0ff] glow-on-hover"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href="https://t.me/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Telegram"
-              className="text-white hover:text-[#00e0ff] glow-on-hover"
-            >
-              <Telegram size={24} />
-            </a>
+            <Magnetic>
+              <a href="tel:+916398644252" aria-label="Phone" className="text-white hover:text-[#00e0ff] glow-on-hover">
+                <Phone size={24} />
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="mailto:vikhyatagrawal1410@gmail.com"
+                aria-label="Email"
+                className="text-white hover:text-[#00e0ff] glow-on-hover"
+              >
+                <Mail size={24} />
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="text-white hover:text-[#00e0ff] glow-on-hover"
+              >
+                <Github size={24} />
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="https://linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="text-white hover:text-[#00e0ff] glow-on-hover"
+              >
+                <Linkedin size={24} />
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="https://t.me/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Telegram"
+                className="text-white hover:text-[#00e0ff] glow-on-hover"
+              >
+                <Telegram size={24} />
+              </a>
+            </Magnetic>
           </motion.div>
         </motion.div>
 

@@ -2,69 +2,66 @@
 
 import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
+import { 
+  Code2, 
+  Database, 
+  Terminal, 
+  GitBranch, 
+  Github, 
+  Figma, 
+  Server, 
+  Layers, 
+  Cpu, 
+  Globe, 
+  Rocket, 
+  CpuIcon as Prompt,
+  Laptop,
+  Box,
+  Layout,
+  FileCode
+} from "lucide-react"
 
 interface Skill {
   name: string
   level: number
   category: "frontend" | "backend" | "tools" | "languages"
+  icon: any
 }
 
 const skills: Skill[] = [
-  { name: "HTML", level: 90, category: "frontend" },
-  { name: "CSS", level: 85, category: "frontend" },
-  { name: "JavaScript", level: 80, category: "frontend" },
-  { name: "React", level: 75, category: "frontend" },
-  { name: "Tailwind", level: 80, category: "frontend" },
-  { name: "Python", level: 85, category: "languages" },
-  { name: "C++", level: 70, category: "languages" },
-  { name: "Node.js", level: 65, category: "backend" },
-  { name: "Express", level: 70, category: "backend" },
-  { name: "MongoDB", level: 70, category: "backend" },
-  { name: "MySQL", level: 75, category: "backend" },
-  { name: "Git", level: 70, category: "tools" },
-  { name: "GitHub", level: 75, category: "tools" },
-  { name: "Figma", level: 65, category: "tools" },
-  { name: "Linux", level: 60, category: "tools" },
-  { name: "Blender", level: 50, category: "tools" },
-  { name: "Unity", level: 45, category: "tools" },
+  { name: "HTML5", level: 95, category: "frontend", icon: Globe },
+  { name: "CSS3", level: 90, category: "frontend", icon: Layers },
+  { name: "JavaScript", level: 85, category: "frontend", icon: FileCode },
+  { name: "React.js", level: 85, category: "frontend", icon: Code2 },
+  { name: "Tailwind CSS", level: 90, category: "frontend", icon: Layout },
+  { name: "ShadCN UI", level: 80, category: "frontend", icon: Box },
+  { name: "Next.js", level: 80, category: "frontend", icon: Rocket },
+  { name: "Node.js", level: 75, category: "backend", icon: Server },
+  { name: "Express.js", level: 75, category: "backend", icon: Terminal },
+  { name: "Supabase", level: 70, category: "backend", icon: Database },
+  { name: "Firebase", level: 75, category: "backend", icon: Database },
+  { name: "PostgreSQL", level: 65, category: "backend", icon: Database },
+  { name: "Prompt Eng.", level: 90, category: "languages", icon: Prompt },
+  { name: "Python", level: 80, category: "languages", icon: Terminal },
+  { name: "Git", level: 85, category: "tools", icon: GitBranch },
+  { name: "GitHub", level: 85, category: "tools", icon: Github },
+  { name: "Vercel", level: 80, category: "tools", icon: Globe },
+  { name: "Figma", level: 70, category: "tools", icon: Figma },
+]
+
+const categories = [
+  { id: "all", label: "All Skills" },
+  { id: "frontend", label: "Frontend", icon: Laptop },
+  { id: "backend", label: "Backend", icon: Server },
+  { id: "languages", label: "Languages", icon: Terminal },
+  { id: "tools", label: "Tools", icon: Cpu },
 ]
 
 export default function Skills() {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
   const [filter, setFilter] = useState<string>("all")
   const [filteredSkills, setFilteredSkills] = useState<Skill[]>(skills)
-  const [counters, setCounters] = useState<{ [key: string]: number }>({
-    frontend: 0,
-    backend: 0,
-    tools: 0,
-    languages: 0,
-  })
-
-  useEffect(() => {
-    if (isInView) {
-      const interval = setInterval(() => {
-        setCounters((prev) => {
-          const newCounters = { ...prev }
-          if (newCounters.frontend < skills.filter((s) => s.category === "frontend").length) {
-            newCounters.frontend += 1
-          }
-          if (newCounters.backend < skills.filter((s) => s.category === "backend").length) {
-            newCounters.backend += 1
-          }
-          if (newCounters.tools < skills.filter((s) => s.category === "tools").length) {
-            newCounters.tools += 1
-          }
-          if (newCounters.languages < skills.filter((s) => s.category === "languages").length) {
-            newCounters.languages += 1
-          }
-          return newCounters
-        })
-      }, 100)
-
-      return () => clearInterval(interval)
-    }
-  }, [isInView])
 
   useEffect(() => {
     if (filter === "all") {
@@ -75,127 +72,96 @@ export default function Skills() {
   }, [filter])
 
   return (
-    <section id="skills" className="py-20" ref={ref}>
+    <section id="skills" className="py-24 relative overflow-hidden" ref={ref}>
+      {/* Background Decorative Elements */}
+      <div className="absolute top-1/4 -left-20 w-64 h-64 bg-[#00e0ff]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8 }}
+        className="container mx-auto px-4 relative z-10"
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-2 text-center">
-          My <span className="text-[#00e0ff]">Skills</span> & Tools
-        </h2>
-        <div className="w-20 h-1 bg-[#00e0ff] mx-auto mb-12"></div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-[#121a2e] p-6 rounded-lg border border-[#1e293b] text-center"
+        <div className="text-center mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-bold mb-4 tracking-tight"
           >
-            <h3 className="text-4xl font-bold text-[#00e0ff] mb-2 achievement-counter">{counters.frontend}</h3>
-            <p className="text-gray-300">Frontend Skills</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-[#121a2e] p-6 rounded-lg border border-[#1e293b] text-center"
+            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00e0ff] to-[#38bdf8]">Expertise</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-gray-400 max-w-2xl mx-auto text-lg"
           >
-            <h3 className="text-4xl font-bold text-[#00e0ff] mb-2 achievement-counter">{counters.backend}</h3>
-            <p className="text-gray-300">Backend Skills</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-[#121a2e] p-6 rounded-lg border border-[#1e293b] text-center"
-          >
-            <h3 className="text-4xl font-bold text-[#00e0ff] mb-2 achievement-counter">{counters.languages}</h3>
-            <p className="text-gray-300">Programming Languages</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-[#121a2e] p-6 rounded-lg border border-[#1e293b] text-center"
-          >
-            <h3 className="text-4xl font-bold text-[#00e0ff] mb-2 achievement-counter">{counters.tools}</h3>
-            <p className="text-gray-300">Tools & Software</p>
-          </motion.div>
+            I've spent years mastering these technologies to build high-performance applications and intelligent systems.
+          </motion.p>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-[#00e0ff] to-transparent mx-auto mt-6 rounded-full"></div>
         </div>
 
-        <div className="flex justify-center mb-8 flex-wrap gap-2">
-          <button
-            onClick={() => setFilter("all")}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              filter === "all" ? "bg-[#00e0ff] text-black" : "bg-[#121a2e] text-white hover:bg-[#1e293b]"
-            }`}
-          >
-            All Skills
-          </button>
-          <button
-            onClick={() => setFilter("frontend")}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              filter === "frontend" ? "bg-[#00e0ff] text-black" : "bg-[#121a2e] text-white hover:bg-[#1e293b]"
-            }`}
-          >
-            Frontend
-          </button>
-          <button
-            onClick={() => setFilter("backend")}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              filter === "backend" ? "bg-[#00e0ff] text-black" : "bg-[#121a2e] text-white hover:bg-[#1e293b]"
-            }`}
-          >
-            Backend
-          </button>
-          <button
-            onClick={() => setFilter("languages")}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              filter === "languages" ? "bg-[#00e0ff] text-black" : "bg-[#121a2e] text-white hover:bg-[#1e293b]"
-            }`}
-          >
-            Languages
-          </button>
-          <button
-            onClick={() => setFilter("tools")}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              filter === "tools" ? "bg-[#00e0ff] text-black" : "bg-[#121a2e] text-white hover:bg-[#1e293b]"
-            }`}
-          >
-            Tools
-          </button>
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setFilter(cat.id)}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 border ${
+                filter === cat.id 
+                ? "bg-[#00e0ff] text-black border-[#00e0ff] shadow-[0_0_20px_rgba(0,224,255,0.3)]" 
+                : "bg-white/5 text-white border-white/10 hover:bg-white/10 hover:border-white/20"
+              }`}
+            >
+              {cat.icon && <cat.icon className="w-4 h-4" />}
+              {cat.label}
+            </button>
+          ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {/* Skills Grid */}
+        <motion.div 
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
           {filteredSkills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="bg-[#121a2e] p-6 rounded-lg border border-[#1e293b] card-hover"
+              layout
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="group bg-[#0f172a]/50 backdrop-blur-sm p-6 rounded-2xl border border-white/5 hover:border-[#00e0ff]/30 transition-all duration-300 shadow-xl"
             >
-              <div className="flex justify-between items-center mb-2">
-                <h3 className="text-lg font-semibold">{skill.name}</h3>
-                <span className="text-sm text-[#00e0ff]">{skill.level}%</span>
+              <div className="flex items-start justify-between mb-4">
+                <div className="p-3 rounded-xl bg-white/5 group-hover:bg-[#00e0ff]/10 group-hover:text-[#00e0ff] transition-colors duration-300">
+                  <skill.icon className="w-6 h-6" />
+                </div>
+                <div className="text-sm font-bold text-[#00e0ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {skill.level}%
+                </div>
               </div>
-              <div className="w-full bg-[#1e293b] h-2 rounded-full overflow-hidden">
+              
+              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-[#00e0ff] transition-colors duration-300">
+                {skill.name}
+              </h3>
+
+              <div className="relative w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                  transition={{ duration: 1, delay: index * 0.05 }}
-                  className="bg-gradient-to-r from-[#00e0ff] to-[#38bdf8] h-full rounded-full"
-                ></motion.div>
+                  transition={{ duration: 1.5, delay: 0.5 + index * 0.1, ease: "easeOut" }}
+                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#00e0ff] to-[#38bdf8] rounded-full"
+                />
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   )
 }
+

@@ -83,7 +83,7 @@ export default function Contact() {
                 <MapPin className="text-[#00e0ff] h-6 w-6 mr-4 mt-1" />
                 <div>
                   <h4 className="text-lg font-medium mb-1">Location</h4>
-                  <p className="text-gray-400">Jaipur, Rajasthan, India</p>
+                  <p className="text-gray-400">Hathras, Uttar Pradesh, India</p>
                 </div>
               </div>
             </div>
